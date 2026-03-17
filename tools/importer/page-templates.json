@@ -1,0 +1,131 @@
+{
+  "templates": [
+    {
+      "name": "homepage",
+      "urls": [
+        "https://www.usbank.com"
+      ],
+      "description": "U.S. Bank homepage with hero banner, product cards, promotional sections, and account login",
+      "blocks": [
+        {
+          "name": "hero",
+          "instances": [
+            "section.ghp-login-banner"
+          ]
+        },
+        {
+          "name": "cards",
+          "instances": [
+            "section.cards-container .m-card-square",
+            "section.product-category-cards ul.card-count-6 > li",
+            "section.styledContentBlock.nocolor .scb-card"
+          ]
+        },
+        {
+          "name": "cards-no-images",
+          "instances": [
+            "section.styledContentBlock.background-secondary .scb-card"
+          ]
+        },
+        {
+          "name": "columns",
+          "instances": [
+            "section.full-span-content-block .sub-grid",
+            "section.component-fullspan .content"
+          ]
+        }
+      ],
+      "sections": [
+        {
+          "id": "section-1",
+          "name": "Hero Banner",
+          "selector": "section.ghp-login-banner",
+          "style": null,
+          "blocks": [
+            "hero"
+          ],
+          "defaultContent": []
+        },
+        {
+          "id": "section-2",
+          "name": "Promotional Cards",
+          "selector": "section.cards-container",
+          "style": null,
+          "blocks": [
+            "cards"
+          ],
+          "defaultContent": []
+        },
+        {
+          "id": "section-3",
+          "name": "Product Category Icons",
+          "selector": "section.product-category-cards",
+          "style": null,
+          "blocks": [
+            "cards"
+          ],
+          "defaultContent": []
+        },
+        {
+          "id": "section-4",
+          "name": "Banking Smarter",
+          "selector": "section.full-span-content-block",
+          "style": "grey",
+          "blocks": [
+            "columns"
+          ],
+          "defaultContent": []
+        },
+        {
+          "id": "section-5",
+          "name": "Plan Track Achieve",
+          "selector": "section.component-fullspan",
+          "style": null,
+          "blocks": [
+            "columns"
+          ],
+          "defaultContent": [
+            "section.component-fullspan .component-offset > h2"
+          ]
+        },
+        {
+          "id": "section-6",
+          "name": "Borrowing",
+          "selector": "section.styledContentBlock.background-secondary",
+          "style": "grey",
+          "blocks": [
+            "cards-no-images"
+          ],
+          "defaultContent": [
+            "section.styledContentBlock.background-secondary .m-section-header"
+          ]
+        },
+        {
+          "id": "section-7",
+          "name": "Happening Now",
+          "selector": [
+            "section.styledContentBlock.pv-base.nocolor",
+            "section.styledContentBlock.nocolor"
+          ],
+          "style": null,
+          "blocks": [
+            "cards"
+          ],
+          "defaultContent": [
+            "section.styledContentBlock.nocolor .m-section-header"
+          ]
+        },
+        {
+          "id": "section-8",
+          "name": "Disclosures",
+          "selector": "div.disclosure section",
+          "style": null,
+          "blocks": [],
+          "defaultContent": [
+            "div.disclosure .body"
+          ]
+        }
+      ]
+    }
+  ]
+}
