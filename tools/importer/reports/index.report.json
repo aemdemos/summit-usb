@@ -1,0 +1,17 @@
+{
+  "status": "success",
+  "url": "https://www.usbank.com",
+  "path": "index",
+  "timestamp": "2026-03-16T23:54:26.453Z",
+  "title": "Personal Banking, Credit Cards, Loans & Investing | U.S. Bank",
+  "template": "homepage",
+  "blocks": [
+    "hero",
+    "cards",
+    "cards",
+    "cards",
+    "cards-no-images",
+    "columns",
+    "columns"
+  ]
+}
