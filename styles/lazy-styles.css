@@ -1,1 +1,34 @@
 /* add global styles that can be loaded post LCP here */
+
+/* ===========================
+   DISCLOSURES SECTION
+   =========================== */
+
+/* Target the second section (disclosures) */
+main > .section:nth-of-type(2) {
+  background-color: var(--light-color);
+  padding: var(--spacing-xl) 0;
+  margin: 0;
+}
+
+main > .section:nth-of-type(2) h2 {
+  font-size: var(--heading-font-size-m);
+  color: var(--text-color);
+}
+
+main > .section:nth-of-type(2) p {
+  font-size: var(--body-font-size-xs);
+  line-height: 1.6;
+  color: var(--text-color-muted);
+}
+
+main > .section:nth-of-type(2) a {
+  font-size: var(--body-font-size-xs);
+}
+
+main > .section:nth-of-type(2) img {
+  max-height: 32px;
+  width: auto;
+  vertical-align: middle;
+  margin-right: var(--spacing-xs);
+}

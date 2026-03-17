@@ -7,6 +7,7 @@
 
 .columns img {
   width: 100%;
+  border-radius: var(--border-radius-m);
 }
 
 .columns > div > div {
@@ -21,6 +22,40 @@
   display: block;
 }
 
+.columns h2 {
+  font-size: var(--heading-font-size-xl);
+  color: var(--text-color);
+  margin-top: 0;
+}
+
+.columns h3 {
+  font-size: var(--heading-font-size-l);
+  color: var(--text-color);
+  margin-top: 0;
+}
+
+.columns p {
+  font-size: var(--body-font-size-m);
+  line-height: 1.6;
+  color: var(--text-color-secondary);
+}
+
+.columns a.button {
+  padding: var(--button-padding-medium);
+  font-size: var(--button-font-size-medium);
+  border-radius: var(--button-border-radius);
+}
+
+.columns ul {
+  padding-left: var(--spacing-l);
+}
+
+.columns ul li {
+  margin-bottom: var(--spacing-xs);
+  line-height: 1.6;
+  color: var(--text-color-secondary);
+}
+
 @media (width >= 900px) {
   .columns > div {
     align-items: center;
@@ -31,5 +66,9 @@
   .columns > div > div {
     flex: 1;
     order: unset;
+  }
+
+  .columns h2 {
+    font-size: var(--heading-font-size-xxl);
   }
 }

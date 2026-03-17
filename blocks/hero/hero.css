@@ -1,29 +1,31 @@
 @import url('./hero-tokens.css');
 
+/* Remove section wrapper constraints */
 .hero-container .hero-wrapper {
   max-width: unset;
   padding: 0;
 }
 
+/* Hero block */
 .hero {
   position: relative;
   padding: var(--hero-padding);
   min-height: var(--hero-min-height);
+  display: flex;
+  align-items: center;
+  overflow: hidden;
 }
 
-.hero h1 {
-  max-width: var(--hero-heading-max-width);
-  margin-left: auto;
-  margin-right: auto;
-  color: var(--background-color);
+/* Background image */
+.hero > div:first-child {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
 }
 
 .hero picture {
   position: absolute;
-  z-index: -1;
   inset: 0;
-  object-fit: cover;
-  box-sizing: border-box;
 }
 
 .hero img {
@@ -32,8 +34,67 @@
   height: 100%;
 }
 
+/* Content overlay */
+.hero > div:last-child {
+  position: relative;
+  z-index: 1;
+  max-width: var(--hero-content-max-width);
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xs);
+}
+
+/* Superhead label */
+.hero > div:last-child > div:first-child p {
+  font-size: var(--label-font-size);
+  font-weight: var(--label-font-weight);
+  letter-spacing: var(--label-letter-spacing);
+  text-transform: var(--label-text-transform);
+  color: var(--text-color-muted);
+  margin: 0;
+}
+
+/* Heading */
+.hero h2 {
+  font-size: var(--heading-font-size-xl);
+  font-weight: 500;
+  color: var(--text-color);
+  margin: 0;
+  line-height: 1.2;
+}
+
+/* Description */
+.hero > div:last-child > div:nth-child(3) p {
+  font-size: var(--body-font-size-m);
+  color: var(--text-color-secondary);
+  margin: 0;
+  line-height: 1.5;
+}
+
+/* CTA buttons */
+.hero > div:last-child > div:nth-child(4) p,
+.hero > div:last-child > div:nth-child(5) p {
+  margin: var(--spacing-xs) 0 0;
+}
+
+.hero .button-container {
+  margin: 0;
+}
+
+.hero a.button {
+  margin: var(--spacing-xs) var(--spacing-xs) 0 0;
+  padding: var(--button-padding-medium);
+  font-size: var(--button-font-size-medium);
+  border-radius: var(--button-border-radius);
+}
+
 @media (width >= 900px) {
   .hero {
     padding: var(--hero-padding-desktop);
+    min-height: var(--hero-min-height-desktop);
+  }
+
+  .hero h2 {
+    font-size: var(--heading-font-size-xxl);
   }
 }
