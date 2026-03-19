@@ -1,56 +1,45 @@
 @import url('./hero-tokens.css');
 
-/* Remove section wrapper constraints */
+/* Hero section — white background, card beside image */
 .hero-container .hero-wrapper {
-  max-width: unset;
-  padding: 0;
+  max-width: var(--max-width-site);
 }
 
-/* Hero block */
 .hero {
-  position: relative;
-  padding: var(--hero-padding);
-  min-height: var(--hero-min-height);
-  display: flex;
-  align-items: center;
-  overflow: hidden;
+  background-color: var(--hero-section-bg);
+  padding-bottom: var(--hero-section-padding-bottom);
 }
 
-/* Background image */
+/* Mobile: stack image above card */
 .hero > div:first-child {
-  position: absolute;
-  inset: 0;
-  z-index: 0;
+  line-height: 0;
 }
 
-.hero picture {
-  position: absolute;
-  inset: 0;
-}
-
-.hero img {
-  object-fit: cover;
+.hero > div:first-child img {
   width: 100%;
-  height: 100%;
+  aspect-ratio: var(--hero-image-aspect);
+  object-fit: cover;
+  display: block;
 }
 
-/* Content overlay */
-.hero > div:last-child {
-  position: relative;
-  z-index: 1;
-  max-width: var(--hero-content-max-width);
+/* Content card — second div child */
+.hero > div:nth-child(2) {
+  border: var(--hero-card-border);
+  padding: var(--hero-card-padding);
+  background: var(--hero-card-bg);
   display: flex;
   flex-direction: column;
-  gap: var(--spacing-xs);
+  gap: var(--spacing-xxs);
+  margin-top: var(--spacing-l);
 }
 
 /* Superhead label */
-.hero > div:last-child > div:first-child p {
+.hero > div:nth-child(2) > div:first-child p {
   font-size: var(--label-font-size);
   font-weight: var(--label-font-weight);
   letter-spacing: var(--label-letter-spacing);
   text-transform: var(--label-text-transform);
-  color: var(--text-color-muted);
+  color: var(--label-color);
   margin: 0;
 }
 
@@ -60,41 +49,224 @@
   font-weight: 500;
   color: var(--text-color);
   margin: 0;
-  line-height: 1.2;
+  line-height: 1.25;
 }
 
 /* Description */
-.hero > div:last-child > div:nth-child(3) p {
-  font-size: var(--body-font-size-m);
+.hero > div:nth-child(2) > div:nth-child(3) p {
+  font-size: var(--body-font-size-s);
   color: var(--text-color-secondary);
   margin: 0;
   line-height: 1.5;
 }
 
-/* CTA buttons */
-.hero > div:last-child > div:nth-child(4) p,
-.hero > div:last-child > div:nth-child(5) p {
+/* CTA buttons — full-width, stacked */
+.hero .button-container {
   margin: var(--spacing-xs) 0 0;
 }
 
-.hero .button-container {
+.hero .button-container p {
   margin: 0;
 }
 
 .hero a.button {
-  margin: var(--spacing-xs) var(--spacing-xs) 0 0;
+  display: block;
+  width: 100%;
   padding: var(--button-padding-medium);
   font-size: var(--button-font-size-medium);
   border-radius: var(--button-border-radius);
+  margin: 0;
+  text-align: center;
 }
+
+/* First CTA: red primary */
+.hero > div:nth-child(2) > .button-container:nth-last-child(2) a.button {
+  background-color: var(--color-red-primary);
+  border-color: transparent;
+  color: var(--background-color);
+}
+
+.hero > div:nth-child(2) > .button-container:nth-last-child(2) a.button:hover {
+  background-color: var(--color-red-hover);
+}
+
+/* Second CTA: outlined secondary */
+.hero > div:nth-child(2) > .button-container:last-child a.button {
+  background-color: transparent;
+  border: 1px solid var(--border-color);
+  color: var(--color-blue-primary);
+}
+
+.hero > div:nth-child(2) > .button-container:last-child a.button:hover {
+  background-color: var(--color-blue-hover);
+  border-color: var(--color-blue-hover);
+  color: var(--background-color);
+}
+
+/* ===========================
+   LOGIN WIDGET — hidden on mobile
+   =========================== */
+
+.hero-login {
+  display: none;
+}
+
+/* ===========================
+   DESKTOP: 3-column grid
+   =========================== */
 
 @media (width >= 900px) {
   .hero {
-    padding: var(--hero-padding-desktop);
-    min-height: var(--hero-min-height-desktop);
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr;
+    gap: var(--spacing-xl);
+    align-items: start;
+    padding: var(--spacing-xxl) 0 var(--hero-section-padding-bottom);
+  }
+
+  /* Card on the left */
+  .hero > div:nth-child(2) {
+    order: -1;
+    margin-top: var(--spacing-xxl);
   }
 
   .hero h2 {
-    font-size: var(--heading-font-size-xxl);
+    font-size: var(--heading-font-size-xl);
+  }
+
+  /* Login widget on the right */
+  .hero-login {
+    display: block;
+    background: var(--background-color);
+    border-radius: 15px;
+    padding: 24px 32px 16px;
+    margin-top: var(--spacing-xxl);
+    box-shadow: var(--shadow-sm);
+  }
+
+  .hero-login h3 {
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--text-color);
+    margin: 0 0 20px;
+  }
+
+  /* Form fields */
+  .hero-login-field {
+    margin-bottom: 0;
+  }
+
+  .hero-login-field input {
+    width: 100%;
+    border: none;
+    border-bottom: 1px solid #7f7f84;
+    border-radius: 0;
+    padding: 8px 0;
+    font-size: 16px;
+    font-family: var(--body-font-family);
+    color: var(--text-color-input);
+    background: transparent;
+    outline: none;
+    box-sizing: border-box;
+  }
+
+  .hero-login-field input:focus {
+    border-bottom-color: var(--color-blue-primary);
+    box-shadow: none;
+  }
+
+  /* Password field with show/hide */
+  .hero-login-password {
+    position: relative;
+  }
+
+  .hero-login-show {
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    color: var(--text-color);
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    padding: 4px 0;
+    margin: 0;
+  }
+
+  .hero-login-show:hover {
+    background: none;
+    color: var(--color-blue-primary);
+  }
+
+  /* Checkbox */
+  .hero-login-checkbox {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin: 16px 0;
+    font-size: 14px;
+    color: var(--text-color);
+    cursor: pointer;
+  }
+
+  .hero-login-checkbox input[type="checkbox"] {
+    width: 16px;
+    height: 16px;
+    margin: 0;
+    accent-color: var(--color-blue-primary);
+  }
+
+  /* Submit button */
+  .hero-login-submit {
+    width: 100%;
+    padding: 10px 24px;
+    margin: 24px 0 20px;
+    background-color: var(--color-blue-primary);
+    color: var(--background-color);
+    border: none;
+    border-radius: var(--button-border-radius);
+    font-size: 16px;
+    font-weight: 500;
+    font-family: var(--body-font-family);
+    cursor: pointer;
+    transition: var(--transition-button);
+  }
+
+  .hero-login-submit:hover {
+    background-color: var(--color-blue-hover);
+  }
+
+  /* Links */
+  .hero-login-links {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .hero-login-links a {
+    font-size: 12px;
+    color: var(--text-color-input);
+    text-decoration: underline;
+  }
+
+  .hero-login-links a:hover {
+    color: var(--color-blue-primary);
+  }
+
+  .hero-login-links a.hero-login-link-arrow {
+    color: var(--color-blue-primary);
+    font-weight: 500;
+    text-decoration: none;
+  }
+
+  .hero-login-links a.hero-login-link-arrow::after {
+    content: ' \203A';
+    font-size: 16px;
+  }
+
+  .hero-login-links a.hero-login-link-arrow:hover {
+    text-decoration: underline;
   }
 }
