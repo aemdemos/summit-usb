@@ -162,6 +162,15 @@ function buildAutoBlocks(main) {
     }
 
     // buildHeroBlock(main); uncomment if autoblocking the hero
+
+    // Remove the first image cards block after the hero (legacy content)
+    const hero = main.querySelector('.hero');
+    if (hero) {
+      const nextCards = hero.parentElement?.querySelector('.hero ~ .cards');
+      if (nextCards && nextCards.querySelector('img')) {
+        nextCards.remove();
+      }
+    }
   } catch (error) {
     // eslint-disable-next-line no-console
     console.error('Auto Blocking failed', error);
