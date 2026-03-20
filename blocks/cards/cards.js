@@ -44,6 +44,41 @@ function decorateProductCategoryCards(ul) {
   decorateIcons(ul);
 }
 
+function isEditorialCard(li) {
+  const hasImage = li.querySelector('.cards-card-image picture, .cards-card-image img[src]');
+  const hasHeading = li.querySelector('h1, h2, h3, h4, h5, h6');
+  return hasImage && hasHeading;
+}
+
+function decorateEditorialCards(block, ul) {
+  const items = [...ul.children];
+  if (!items.length || !items.every((li) => isEditorialCard(li))) return;
+
+  ul.classList.add('editorial');
+
+  // Inject section heading
+  const header = document.createElement('div');
+  header.className = 'cards-editorial-header';
+  const h2 = document.createElement('h2');
+  h2.textContent = 'Happening now';
+  header.append(h2);
+  block.prepend(header);
+
+  // Add chevron icons to CTA links
+  items.forEach((li) => {
+    const body = li.querySelector('.cards-card-body');
+    if (!body) return;
+    const ctaLink = body.querySelector('p:last-child a');
+    if (ctaLink) {
+      const chevron = document.createElement('span');
+      chevron.className = 'icon icon-chevron-right';
+      ctaLink.append(chevron);
+    }
+  });
+
+  decorateIcons(block);
+}
+
 export default function decorate(block) {
   const blockId = getBlockId('cards');
   block.setAttribute('id', blockId);
@@ -66,4 +101,5 @@ export default function decorate(block) {
   block.append(ul);
 
   decorateProductCategoryCards(ul);
+  decorateEditorialCards(block, ul);
 }
