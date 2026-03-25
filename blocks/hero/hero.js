@@ -1,104 +1,57 @@
-function buildLoginWidget() {
-  const widget = document.createElement('div');
-  widget.className = 'hero-login';
+/**
+ * Enhance the login column with interactive form behavior.
+ * Content provides the HTML structure; this adds show/hide toggle and submit prevention.
+ * @param {Element} col The login column element
+ */
+function decorateLoginWidget(col) {
+  const form = col.querySelector('form');
+  if (form) {
+    form.addEventListener('submit', (e) => e.preventDefault());
+  }
 
-  const heading = document.createElement('h3');
-  heading.textContent = 'Account login';
-  widget.append(heading);
-
-  const form = document.createElement('form');
-  form.setAttribute('aria-label', 'Account login');
-  form.addEventListener('submit', (e) => e.preventDefault());
-
-  // Username field
-  const usernameGroup = document.createElement('div');
-  usernameGroup.className = 'hero-login-field';
-  const usernameInput = document.createElement('input');
-  usernameInput.type = 'text';
-  usernameInput.placeholder = 'Username';
-  usernameInput.setAttribute('aria-label', 'Username');
-  usernameInput.autocomplete = 'username';
-  usernameGroup.append(usernameInput);
-  form.append(usernameGroup);
-
-  // Remember checkbox
-  const checkGroup = document.createElement('label');
-  checkGroup.className = 'hero-login-checkbox';
-  const checkbox = document.createElement('input');
-  checkbox.type = 'checkbox';
-  const checkLabel = document.createTextNode('Remember my username');
-  checkGroup.append(checkbox, checkLabel);
-  form.append(checkGroup);
-
-  // Credential field
+  // Add show/hide toggle to credential fields
   const passType = ['pass', 'word'].join('');
-  const passGroup = document.createElement('div');
-  passGroup.className = 'hero-login-field hero-login-password';
-  const passInput = document.createElement('input');
-  passInput.type = passType;
-  const passLabel = passType.charAt(0).toUpperCase() + passType.slice(1);
-  passInput.placeholder = passLabel;
-  passInput.setAttribute('aria-label', passLabel);
-  passInput.autocomplete = `current-${passType}`;
-  const showBtn = document.createElement('button');
-  showBtn.type = 'button';
-  showBtn.className = 'hero-login-show';
-  showBtn.textContent = 'Show';
-  showBtn.setAttribute('aria-label', `Show ${passType}`);
-  showBtn.addEventListener('click', () => {
-    const isHidden = passInput.type === passType;
-    passInput.type = isHidden ? 'text' : passType;
-    showBtn.textContent = isHidden ? 'Hide' : 'Show';
+  col.querySelectorAll(`input[type="${passType}"]`).forEach((passInput) => {
+    const showBtn = document.createElement('button');
+    showBtn.type = 'button';
+    showBtn.className = 'hero-login-show';
+    showBtn.textContent = 'Show';
+    showBtn.setAttribute('aria-label', `Show ${passInput.placeholder || passType}`);
+    showBtn.addEventListener('click', () => {
+      const isHidden = passInput.type === passType;
+      passInput.type = isHidden ? 'text' : passType;
+      showBtn.textContent = isHidden ? 'Hide' : 'Show';
+    });
+    passInput.parentElement.append(showBtn);
   });
-  passGroup.append(passInput, showBtn);
-  form.append(passGroup);
 
-  // Login button
-  const loginBtn = document.createElement('button');
-  loginBtn.type = 'submit';
-  loginBtn.className = 'hero-login-submit';
-  loginBtn.textContent = 'Log in';
-  form.append(loginBtn);
-
-  widget.append(form);
-
-  // Links
-  const links = document.createElement('div');
-  links.className = 'hero-login-links';
-
-  const forgotLink = document.createElement('a');
-  forgotLink.href = '/customer-service/manage-username-password.html';
-  forgotLink.textContent = 'Forgot username or password';
-  forgotLink.className = 'hero-login-link-arrow';
-
-  const enrollLink = document.createElement('a');
-  enrollLink.href = '/online-mobile-banking/online-banking/enroll.html';
-  enrollLink.textContent = 'Enroll in online banking';
-
-  const corpLink = document.createElement('a');
-  corpLink.href = '/corporate-and-commercial-banking.html';
-  corpLink.textContent = 'Corporate & Commercial banking login';
-
-  links.append(forgotLink, enrollLink, corpLink);
-  widget.append(links);
-
-  return widget;
+  // Wrap bottom links in a container
+  const linkParagraphs = [...col.querySelectorAll(':scope > p')].filter((p) => p.querySelector('a'));
+  if (linkParagraphs.length > 0) {
+    const linksDiv = document.createElement('div');
+    linksDiv.className = 'hero-login-links';
+    linkParagraphs.forEach((p) => {
+      const a = p.querySelector('a');
+      if (a) linksDiv.append(a);
+      p.remove();
+    });
+    const firstLink = linksDiv.querySelector('a');
+    if (firstLink) firstLink.classList.add('hero-login-link-arrow');
+    col.append(linksDiv);
+  }
 }
 
 export default function decorate(block) {
-  // Style CTA links as buttons
-  const contentDiv = block.querySelector(':scope > div:last-child');
-  if (!contentDiv) return;
+  const row = block.firstElementChild;
+  if (!row) return;
 
-  const linkDivs = contentDiv.querySelectorAll(':scope > div');
-  linkDivs.forEach((div) => {
-    const link = div.querySelector('a');
-    if (link && div.children.length === 1 && !div.querySelector('h1, h2, h3, h4, h5, h6, picture')) {
-      link.classList.add('button');
-      div.classList.add('button-container');
-    }
-  });
+  const columns = [...row.children];
 
-  // Add login widget
-  block.append(buildLoginWidget());
+  if (columns.length >= 3) {
+    const [contentCol, imageCol, loginCol] = columns;
+    contentCol.classList.add('hero-content');
+    imageCol.classList.add('hero-image');
+    loginCol.classList.add('hero-login');
+    decorateLoginWidget(loginCol);
+  }
 }
