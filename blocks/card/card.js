@@ -12,8 +12,11 @@ export function createCard(row) {
   moveInstrumentation(row, li);
   while (row.firstElementChild) li.append(row.firstElementChild);
   [...li.children].forEach((div) => {
-    if (div.children.length === 1 && div.querySelector('picture')) div.className = 'cards-card-image';
-    else if (div.children.length === 1 && div.querySelector('.icon')) div.className = 'cards-card-icon';
+    const onlyChild = div.children.length === 1;
+    const hasSvg = div.querySelector('img[src*=".svg"]');
+    if (onlyChild && hasSvg) div.className = 'cards-card-icon';
+    else if (onlyChild && div.querySelector('picture')) div.className = 'cards-card-image';
+    else if (onlyChild && div.querySelector('.icon')) div.className = 'cards-card-icon';
     else div.className = 'cards-card-body';
   });
   return li;

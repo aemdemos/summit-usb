@@ -485,6 +485,11 @@ main .section.highlight {
   padding: 40px 0;
 }
 
+/* Extra vertical padding */
+main .section.padded {
+  padding: 80px 0;
+}
+
 /* Dark navy background (US Bank footer/hero style) */
 main .section.dark {
   background-color: var(--dark-color);
