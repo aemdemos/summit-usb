@@ -4,29 +4,28 @@
    DISCLOSURES SECTION
    =========================== */
 
-/* Target the second section (disclosures) */
-main > .section:nth-of-type(2) {
+main .section.disclosures {
   background-color: var(--light-color);
   padding: var(--spacing-xl) 0;
   margin: 0;
 }
 
-main > .section:nth-of-type(2) h2 {
+main .section.disclosures h2 {
   font-size: var(--heading-font-size-m);
   color: var(--text-color);
 }
 
-main > .section:nth-of-type(2) p {
+main .section.disclosures p {
   font-size: var(--body-font-size-xs);
   line-height: 1.6;
   color: var(--text-color-muted);
 }
 
-main > .section:nth-of-type(2) a {
+main .section.disclosures a {
   font-size: var(--body-font-size-xs);
 }
 
-main > .section:nth-of-type(2) img {
+main .section.disclosures img {
   max-height: 32px;
   width: auto;
   vertical-align: middle;
