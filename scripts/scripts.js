@@ -168,7 +168,9 @@ function buildAutoBlocks(main) {
     if (hero) {
       const nextCards = hero.parentElement?.querySelector('.hero ~ .cards');
       const hasContentImages = nextCards
-        && [...nextCards.querySelectorAll('img')].some((img) => !img.closest('.icon'));
+        && [...nextCards.querySelectorAll('img')].some((img) => (
+          !img.closest('.icon') && !(img.getAttribute('src') || '').includes('.svg')
+        ));
       if (hasContentImages) {
         nextCards.remove();
       }
