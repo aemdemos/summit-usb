@@ -11,19 +11,20 @@
 }
 
 /* Mobile: stack image above card */
-.hero > div:first-child {
+.hero .hero-image {
   line-height: 0;
+  order: -1;
 }
 
-.hero > div:first-child img {
+.hero .hero-image img {
   width: 100%;
   aspect-ratio: var(--hero-image-aspect);
   object-fit: cover;
   display: block;
 }
 
-/* Content card — second div child */
-.hero > div:nth-child(2) {
+/* Content card */
+.hero .hero-content {
   border: var(--hero-card-border);
   padding: var(--hero-card-padding);
   background: var(--hero-card-bg);
@@ -34,7 +35,7 @@
 }
 
 /* Superhead label */
-.hero > div:nth-child(2) > div:first-child p {
+.hero .hero-content > p:first-child {
   font-size: var(--label-font-size);
   font-weight: var(--label-font-weight);
   letter-spacing: var(--label-letter-spacing);
@@ -53,7 +54,7 @@
 }
 
 /* Description */
-.hero > div:nth-child(2) > div:nth-child(3) p {
+.hero .hero-content > p:nth-of-type(2) {
   font-size: var(--body-font-size-s);
   color: var(--text-color-secondary);
   margin: 0;
@@ -61,11 +62,11 @@
 }
 
 /* CTA buttons — full-width, stacked */
-.hero .button-container {
+.hero .button-wrapper {
   margin: var(--spacing-xs) 0 0;
 }
 
-.hero .button-container p {
+.hero .button-wrapper p {
   margin: 0;
 }
 
@@ -80,24 +81,24 @@
 }
 
 /* First CTA: red primary */
-.hero > div:nth-child(2) > .button-container:nth-last-child(2) a.button {
+.hero .hero-content a.button.primary {
   background-color: var(--color-red-primary);
   border-color: transparent;
   color: var(--background-color);
 }
 
-.hero > div:nth-child(2) > .button-container:nth-last-child(2) a.button:hover {
+.hero .hero-content a.button.primary:hover {
   background-color: var(--color-red-hover);
 }
 
 /* Second CTA: outlined secondary */
-.hero > div:nth-child(2) > .button-container:last-child a.button {
+.hero .hero-content a.button.secondary {
   background-color: transparent;
   border: 1px solid var(--border-color);
   color: var(--color-blue-primary);
 }
 
-.hero > div:nth-child(2) > .button-container:last-child a.button:hover {
+.hero .hero-content a.button.secondary:hover {
   background-color: var(--color-blue-hover);
   border-color: var(--color-blue-hover);
   color: var(--background-color);
@@ -107,7 +108,7 @@
    LOGIN WIDGET — hidden on mobile
    =========================== */
 
-.hero-login {
+.hero .hero-login {
   display: none;
 }
 
@@ -116,16 +117,19 @@
    =========================== */
 
 @media (width >= 900px) {
-  .hero {
+  .hero > div {
     display: grid;
     grid-template-columns: 1fr 2fr 1fr;
     gap: var(--spacing-xl);
     align-items: start;
+  }
+
+  .hero {
     padding: var(--spacing-xxl) 0 var(--hero-section-padding-bottom);
   }
 
   /* Card on the left */
-  .hero > div:nth-child(2) {
+  .hero .hero-content {
     order: -1;
     margin-top: var(--spacing-xxl);
   }
@@ -134,8 +138,13 @@
     font-size: var(--heading-font-size-xl);
   }
 
+  /* Image in the center */
+  .hero .hero-image {
+    order: 0;
+  }
+
   /* Login widget on the right */
-  .hero-login {
+  .hero .hero-login {
     display: block;
     background: var(--background-color);
     border-radius: 15px;
@@ -144,7 +153,7 @@
     box-shadow: var(--shadow-sm);
   }
 
-  .hero-login h3 {
+  .hero .hero-login h3 {
     font-size: 20px;
     font-weight: 600;
     color: var(--text-color);
@@ -152,11 +161,11 @@
   }
 
   /* Form fields */
-  .hero-login-field {
+  .hero .hero-login-field {
     margin-bottom: 0;
   }
 
-  .hero-login-field input {
+  .hero .hero-login-field input {
     width: 100%;
     border: none;
     border-bottom: 1px solid #7f7f84;
@@ -170,17 +179,17 @@
     box-sizing: border-box;
   }
 
-  .hero-login-field input:focus {
+  .hero .hero-login-field input:focus {
     border-bottom-color: var(--color-blue-primary);
     box-shadow: none;
   }
 
   /* Password field with show/hide */
-  .hero-login-password {
+  .hero .hero-login-password {
     position: relative;
   }
 
-  .hero-login-show {
+  .hero .hero-login-show {
     position: absolute;
     right: 0;
     top: 50%;
@@ -195,13 +204,13 @@
     margin: 0;
   }
 
-  .hero-login-show:hover {
+  .hero .hero-login-show:hover {
     background: none;
     color: var(--color-blue-primary);
   }
 
   /* Checkbox */
-  .hero-login-checkbox {
+  .hero .hero-login-checkbox {
     display: flex;
     align-items: center;
     gap: 8px;
@@ -211,7 +220,7 @@
     cursor: pointer;
   }
 
-  .hero-login-checkbox input[type="checkbox"] {
+  .hero .hero-login-checkbox input[type="checkbox"] {
     width: 16px;
     height: 16px;
     margin: 0;
@@ -219,7 +228,7 @@
   }
 
   /* Submit button */
-  .hero-login-submit {
+  .hero .hero-login-submit {
     width: 100%;
     padding: 10px 24px;
     margin: 24px 0 20px;
@@ -234,39 +243,39 @@
     transition: var(--transition-button);
   }
 
-  .hero-login-submit:hover {
+  .hero .hero-login-submit:hover {
     background-color: var(--color-blue-hover);
   }
 
   /* Links */
-  .hero-login-links {
+  .hero .hero-login-links {
     display: flex;
     flex-direction: column;
     gap: 8px;
   }
 
-  .hero-login-links a {
+  .hero .hero-login-links a {
     font-size: 12px;
     color: var(--text-color-input);
     text-decoration: underline;
   }
 
-  .hero-login-links a:hover {
+  .hero .hero-login-links a:hover {
     color: var(--color-blue-primary);
   }
 
-  .hero-login-links a.hero-login-link-arrow {
+  .hero .hero-login-links a.hero-login-link-arrow {
     color: var(--color-blue-primary);
     font-weight: 500;
     text-decoration: none;
   }
 
-  .hero-login-links a.hero-login-link-arrow::after {
+  .hero .hero-login-links a.hero-login-link-arrow::after {
     content: ' \203A';
     font-size: 16px;
   }
 
-  .hero-login-links a.hero-login-link-arrow:hover {
+  .hero .hero-login-links a.hero-login-link-arrow:hover {
     text-decoration: underline;
   }
 }
