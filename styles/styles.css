@@ -161,7 +161,7 @@ body.appear {
 }
 
 /* Skip-to-content link: visually hidden, visible on focus */
-a[href="#bodyContent"] {
+a[aria-label="Skip to main content"] {
   position: absolute;
   left: -10000px;
   width: 1px;
@@ -169,7 +169,7 @@ a[href="#bodyContent"] {
   overflow: hidden;
 }
 
-a[href="#bodyContent"]:focus {
+a[aria-label="Skip to main content"]:focus {
   position: fixed;
   top: 8px;
   left: 8px;
