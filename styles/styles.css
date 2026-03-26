@@ -160,6 +160,29 @@ body.appear {
   display: block;
 }
 
+/* Skip-to-content link: visually hidden, visible on focus */
+a[href="#bodyContent"] {
+  position: absolute;
+  left: -10000px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
+a[href="#bodyContent"]:focus {
+  position: fixed;
+  top: 8px;
+  left: 8px;
+  width: auto;
+  height: auto;
+  overflow: visible;
+  z-index: 9999;
+  background: var(--background-color);
+  padding: 8px 16px;
+  border-radius: var(--button-border-radius);
+  box-shadow: var(--shadow-sm);
+}
+
 header {
   height: var(--header-height);
 }
