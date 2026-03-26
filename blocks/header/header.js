@@ -97,7 +97,7 @@ function buildMegamenuPanel(submenuLi) {
     const group = document.createElement('div');
     group.className = 'megamenu-group';
 
-    const strong = groupLi.querySelector(':scope > strong');
+    const strong = groupLi.querySelector(':scope > strong, :scope > p > strong');
     if (strong) {
       const heading = document.createElement('h3');
       heading.className = 'megamenu-group-heading';
@@ -160,7 +160,7 @@ function buildSubmenu(personalLi, nav) {
   panelsContainer.className = 'megamenu-panels';
 
   [...ul.children].forEach((li) => {
-    const a = li.querySelector(':scope > a');
+    const a = li.querySelector(':scope > a, :scope > p > a');
     if (!a) return;
 
     const tab = document.createElement('button');
@@ -272,7 +272,7 @@ function createMobileNavItem(text, href, hasChevron, onClick) {
 function buildMobileLevel3Content(deepUl, subLi, parentLabel, parentPanelId, deepPanel, ctx) {
   [...deepUl.children].forEach((deepLi) => {
     if (deepLi.classList.contains('promo-card') || deepLi.classList.contains('panel-cta')) return;
-    const deepStrong = deepLi.querySelector(':scope > strong');
+    const deepStrong = deepLi.querySelector(':scope > strong, :scope > p > strong');
     const deepSubUl = deepLi.querySelector(':scope > ul');
     if (deepStrong && deepSubUl) {
       ctx.counter += 1;
@@ -311,7 +311,7 @@ function buildMobileLevel3Content(deepUl, subLi, parentLabel, parentPanelId, dee
 
 function buildMobileLevel2Content(subUl, parentText, subPanelId, subPanel, ctx) {
   [...subUl.children].forEach((subLi) => {
-    const subA = subLi.querySelector(':scope > a');
+    const subA = subLi.querySelector(':scope > a, :scope > p > a');
     if (!subA) return;
     const subText = subA.textContent.trim();
     const deepUl = subLi.querySelector(':scope > ul');
@@ -397,7 +397,7 @@ function buildMobileMenu(navSection, toolsSection) {
     const topUl = navSection.querySelector(':scope > ul');
     if (topUl) {
       [...topUl.children].forEach((li) => {
-        const a = li.querySelector(':scope > a');
+        const a = li.querySelector(':scope > a, :scope > p > a');
         if (!a) return;
         const text = a.textContent.trim();
         const subUl = li.querySelector(':scope > ul');
@@ -534,7 +534,7 @@ export default async function decorate(block) {
     const topUl = navSection.querySelector(':scope > ul');
     if (topUl) {
       [...topUl.children].forEach((li) => {
-        const a = li.querySelector(':scope > a');
+        const a = li.querySelector(':scope > a, :scope > p > a');
         if (!a) return;
         const text = a.textContent.trim();
         const hasSubmenu = li.querySelector(':scope > ul');
