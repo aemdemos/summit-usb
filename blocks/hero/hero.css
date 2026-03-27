@@ -111,13 +111,19 @@ main .hero a.button.secondary:hover {
    =========================== */
 
 @media (width >= 900px) {
+  /* The cell uses a 9-column sub-grid to position image and overlay */
   main .hero > div > div {
-    min-height: 480px;
+    display: grid;
+    grid-template-columns: repeat(9, 1fr);
+    min-height: 498px;
   }
 
+  /* Hero image: spans columns 2-9 (behind the overlay) */
   main .hero .hero-bg {
-    position: absolute;
-    inset: 0;
+    grid-column: 2 / 10;
+    grid-row: 1;
+    border-radius: 0 0 0 12px;
+    overflow: hidden;
   }
 
   main .hero .hero-bg img,
@@ -126,13 +132,16 @@ main .hero a.button.secondary:hover {
     height: 100%;
     aspect-ratio: auto;
     object-fit: cover;
+    display: block;
   }
 
+  /* Text overlay: spans columns 1-4 (overlaps image on cols 2-4) */
   main .hero .hero-overlay {
-    position: relative;
+    grid-column: 1 / 5;
+    grid-row: 1;
     z-index: 1;
-    max-width: 340px;
-    margin: 40px 0 40px 15%;
+    align-self: start;
+    margin: 40px 0 0;
     padding: 24px;
     box-shadow: var(--shadow-md);
   }
