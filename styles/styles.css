@@ -584,7 +584,7 @@ main .section.gray {
   main .section.hero-split {
     display: grid;
     grid-template-columns: repeat(12, 1fr);
-    max-width: 1120px;
+    max-width: var(--max-width-site);
     margin: 0 auto;
     padding: 0;
     align-items: start;
