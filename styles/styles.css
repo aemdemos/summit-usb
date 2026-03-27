@@ -578,3 +578,40 @@ main .section.gray {
   margin: 0;
   padding: 40px 0;
 }
+
+/* Hero-split: 12-column grid matching original US Bank layout */
+@media (width >= 900px) {
+  main .section.hero-split {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    max-width: var(--max-width-site);
+    margin: 0 auto;
+    padding: 0;
+    align-items: start;
+  }
+
+  /* Override default wrapper constraints so children fill grid cells */
+  main .section.hero-split > div {
+    max-width: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  /* Hero block: columns 1-9 (image + text overlay area) */
+  main .section.hero-split > .hero-wrapper {
+    grid-column: 1 / 10;
+    grid-row: 1;
+  }
+
+  /* Account login: columns 10-12, stretch to match hero height */
+  main .section.hero-split > .account-login-wrapper {
+    grid-column: 10 / 13;
+    grid-row: 1;
+    align-self: stretch;
+  }
+
+  main .section.hero-split > .default-content-wrapper,
+  main .section.hero-split > .section-metadata-wrapper {
+    grid-column: 1 / -1;
+  }
+}

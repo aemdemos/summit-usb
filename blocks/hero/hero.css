@@ -1,51 +1,53 @@
-@import url('./hero-tokens.css');
+/* Hero block — image background with overlaid text card */
 
-/* Hero section — white background, card beside image */
-.hero-container .hero-wrapper {
-  max-width: var(--max-width-site);
+/* Mobile: image above, card below */
+main .hero {
+  position: relative;
+  background: var(--background-color);
 }
 
-.hero {
-  background-color: var(--hero-section-bg);
-  padding-bottom: var(--hero-section-padding-bottom);
+main .hero > div > div {
+  position: relative;
+  overflow: hidden;
 }
 
-/* Mobile: stack image above card */
-.hero .hero-image {
+/* Background image */
+main .hero .hero-bg {
   line-height: 0;
-  order: -1;
 }
 
-.hero .hero-image img {
+main .hero .hero-bg img,
+main .hero .hero-bg picture img {
   width: 100%;
-  aspect-ratio: var(--hero-image-aspect);
+  aspect-ratio: 3 / 2;
   object-fit: cover;
   display: block;
 }
 
-/* Content card */
-.hero .hero-content {
-  border: var(--hero-card-border);
-  padding: var(--hero-card-padding);
-  background: var(--hero-card-bg);
+/* Text overlay card */
+main .hero .hero-overlay {
+  background: var(--background-color);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  padding: 24px;
   display: flex;
   flex-direction: column;
-  gap: var(--spacing-xxs);
-  margin-top: var(--spacing-l);
+  gap: 4px;
+  margin: 16px;
 }
 
-/* Superhead label */
-.hero .hero-content > p:first-child {
+/* Superhead label (first paragraph) */
+main .hero .hero-overlay > p:first-child {
   font-size: var(--label-font-size);
   font-weight: var(--label-font-weight);
   letter-spacing: var(--label-letter-spacing);
   text-transform: var(--label-text-transform);
-  color: var(--label-color);
+  color: var(--color-blue-primary);
   margin: 0;
 }
 
 /* Heading */
-.hero h2 {
+main .hero h2 {
   font-size: var(--heading-font-size-xl);
   font-weight: 500;
   color: var(--text-color);
@@ -53,24 +55,24 @@
   line-height: 1.25;
 }
 
-/* Description */
-.hero .hero-content > p:nth-of-type(2) {
+/* Description paragraph */
+main .hero .hero-overlay > p:nth-of-type(2) {
   font-size: var(--body-font-size-s);
   color: var(--text-color-secondary);
   margin: 0;
   line-height: 1.5;
 }
 
-/* CTA buttons — full-width, stacked */
-.hero .button-wrapper {
-  margin: var(--spacing-xs) 0 0;
+/* CTA buttons */
+main .hero .button-wrapper {
+  margin: 8px 0 0;
 }
 
-.hero .button-wrapper p {
+main .hero .button-wrapper p {
   margin: 0;
 }
 
-.hero a.button {
+main .hero a.button {
   display: block;
   width: 100%;
   padding: var(--button-padding-medium);
@@ -80,202 +82,67 @@
   text-align: center;
 }
 
-/* First CTA: red primary */
-.hero .hero-content a.button.primary {
+/* Primary CTA: red */
+main .hero a.button.primary {
   background-color: var(--color-red-primary);
   border-color: transparent;
   color: var(--background-color);
 }
 
-.hero .hero-content a.button.primary:hover {
+main .hero a.button.primary:hover {
   background-color: var(--color-red-hover);
 }
 
-/* Second CTA: outlined secondary */
-.hero .hero-content a.button.secondary {
+/* Secondary CTA: outlined */
+main .hero a.button.secondary {
   background-color: transparent;
   border: 1px solid var(--border-color);
   color: var(--color-blue-primary);
 }
 
-.hero .hero-content a.button.secondary:hover {
+main .hero a.button.secondary:hover {
   background-color: var(--color-blue-hover);
   border-color: var(--color-blue-hover);
   color: var(--background-color);
 }
 
 /* ===========================
-   LOGIN WIDGET — hidden on mobile
-   =========================== */
-
-.hero .hero-login {
-  display: none;
-}
-
-/* ===========================
-   DESKTOP: 3-column grid
+   DESKTOP: overlay on image
    =========================== */
 
 @media (width >= 900px) {
-  .hero > div {
+  /* The cell uses a 9-column sub-grid to position image and overlay */
+  main .hero > div > div {
     display: grid;
-    grid-template-columns: 1fr 2fr 1fr;
-    gap: var(--spacing-xl);
-    align-items: start;
+    grid-template-columns: repeat(9, 1fr);
+    min-height: 498px;
   }
 
-  .hero {
-    padding: var(--spacing-xxl) 0 var(--hero-section-padding-bottom);
+  /* Hero image: spans columns 2-9 (behind the overlay) */
+  main .hero .hero-bg {
+    grid-column: 2 / 10;
+    grid-row: 1;
+    border-radius: 0 0 0 12px;
+    overflow: hidden;
   }
 
-  /* Card on the left */
-  .hero .hero-content {
-    order: -1;
-    margin-top: var(--spacing-xxl);
-  }
-
-  .hero h2 {
-    font-size: var(--heading-font-size-xl);
-  }
-
-  /* Image in the center */
-  .hero .hero-image {
-    order: 0;
-  }
-
-  /* Login widget on the right */
-  .hero .hero-login {
+  main .hero .hero-bg img,
+  main .hero .hero-bg picture img {
+    width: 100%;
+    height: 100%;
+    aspect-ratio: auto;
+    object-fit: cover;
     display: block;
-    background: var(--background-color);
-    border-radius: 15px;
-    padding: 24px 32px 16px;
-    margin-top: var(--spacing-xxl);
-    box-shadow: var(--shadow-sm);
   }
 
-  .hero .hero-login h3 {
-    font-size: 20px;
-    font-weight: 600;
-    color: var(--text-color);
-    margin: 0 0 20px;
-  }
-
-  /* Form fields */
-  .hero .hero-login-field {
-    margin-bottom: 0;
-  }
-
-  .hero .hero-login-field input {
-    width: 100%;
-    border: none;
-    border-bottom: 1px solid #7f7f84;
-    border-radius: 0;
-    padding: 8px 0;
-    font-size: 16px;
-    font-family: var(--body-font-family);
-    color: var(--text-color-input);
-    background: transparent;
-    outline: none;
-    box-sizing: border-box;
-  }
-
-  .hero .hero-login-field input:focus {
-    border-bottom-color: var(--color-blue-primary);
-    box-shadow: none;
-  }
-
-  /* Password field with show/hide */
-  .hero .hero-login-password {
-    position: relative;
-  }
-
-  .hero .hero-login-show {
-    position: absolute;
-    right: 0;
-    top: 50%;
-    transform: translateY(-50%);
-    background: none;
-    border: none;
-    color: var(--text-color);
-    font-size: 14px;
-    font-weight: 500;
-    cursor: pointer;
-    padding: 4px 0;
-    margin: 0;
-  }
-
-  .hero .hero-login-show:hover {
-    background: none;
-    color: var(--color-blue-primary);
-  }
-
-  /* Checkbox */
-  .hero .hero-login-checkbox {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    margin: 16px 0;
-    font-size: 14px;
-    color: var(--text-color);
-    cursor: pointer;
-  }
-
-  .hero .hero-login-checkbox input[type="checkbox"] {
-    width: 16px;
-    height: 16px;
-    margin: 0;
-    accent-color: var(--color-blue-primary);
-  }
-
-  /* Submit button */
-  .hero .hero-login-submit {
-    width: 100%;
-    padding: 10px 24px;
-    margin: 24px 0 20px;
-    background-color: var(--color-blue-primary);
-    color: var(--background-color);
-    border: none;
-    border-radius: var(--button-border-radius);
-    font-size: 16px;
-    font-weight: 500;
-    font-family: var(--body-font-family);
-    cursor: pointer;
-    transition: var(--transition-button);
-  }
-
-  .hero .hero-login-submit:hover {
-    background-color: var(--color-blue-hover);
-  }
-
-  /* Links */
-  .hero .hero-login-links {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-  }
-
-  .hero .hero-login-links a {
-    font-size: 12px;
-    color: var(--text-color-input);
-    text-decoration: underline;
-  }
-
-  .hero .hero-login-links a:hover {
-    color: var(--color-blue-primary);
-  }
-
-  .hero .hero-login-links a.hero-login-link-arrow {
-    color: var(--color-blue-primary);
-    font-weight: 500;
-    text-decoration: none;
-  }
-
-  .hero .hero-login-links a.hero-login-link-arrow::after {
-    content: ' \203A';
-    font-size: 16px;
-  }
-
-  .hero .hero-login-links a.hero-login-link-arrow:hover {
-    text-decoration: underline;
+  /* Text overlay: spans columns 1-4 (overlaps image on cols 2-4) */
+  main .hero .hero-overlay {
+    grid-column: 1 / 5;
+    grid-row: 1;
+    z-index: 1;
+    align-self: start;
+    margin: 40px 0 0;
+    padding: 24px;
+    box-shadow: var(--shadow-md);
   }
 }

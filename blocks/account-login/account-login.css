@@ -1,0 +1,150 @@
+/* Account Login block — standalone login widget */
+
+/* Hidden on mobile */
+main .account-login {
+  display: none;
+}
+
+/* Desktop: show login panel */
+@media (width >= 900px) {
+  main .account-login {
+    display: block;
+    height: 100%;
+    padding-left: 24px;
+    border-bottom: 1px solid var(--border-color);
+    border-right: 1px solid var(--border-color);
+    border-radius: 0 0 12px;
+  }
+
+  main .account-login > div > div {
+    background: var(--background-color);
+    border-radius: 15px;
+    padding: 24px 32px 16px;
+  }
+
+  main .account-login h3 {
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--text-color);
+    margin: 0 0 20px;
+  }
+
+  /* Form fields */
+  main .account-login .login-field {
+    margin-bottom: 0;
+  }
+
+  main .account-login .login-field input {
+    width: 100%;
+    border: none;
+    border-bottom: 1px solid #7f7f84;
+    border-radius: 0;
+    padding: 8px 0;
+    font-size: 16px;
+    font-family: var(--body-font-family);
+    color: var(--text-color-input);
+    background: transparent;
+    outline: none;
+    box-sizing: border-box;
+  }
+
+  main .account-login .login-field input:focus {
+    border-bottom-color: var(--color-blue-primary);
+    box-shadow: none;
+  }
+
+  /* Password field with show/hide */
+  main .account-login .login-password {
+    position: relative;
+  }
+
+  main .account-login .login-show {
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    color: var(--text-color);
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    padding: 4px 0;
+    margin: 0;
+  }
+
+  main .account-login .login-show:hover {
+    background: none;
+    color: var(--color-blue-primary);
+  }
+
+  /* Checkbox */
+  main .account-login .login-checkbox {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin: 16px 0;
+    font-size: 14px;
+    color: var(--text-color);
+    cursor: pointer;
+  }
+
+  main .account-login .login-checkbox input[type="checkbox"] {
+    width: 16px;
+    height: 16px;
+    margin: 0;
+    accent-color: var(--color-blue-primary);
+  }
+
+  /* Submit button */
+  main .account-login .login-submit {
+    width: 100%;
+    padding: 10px 24px;
+    margin: 24px 0 20px;
+    background-color: var(--color-blue-primary);
+    color: var(--background-color);
+    border: none;
+    border-radius: var(--button-border-radius);
+    font-size: 16px;
+    font-weight: 500;
+    font-family: var(--body-font-family);
+    cursor: pointer;
+    transition: var(--transition-button);
+  }
+
+  main .account-login .login-submit:hover {
+    background-color: var(--color-blue-hover);
+  }
+
+  /* Links */
+  main .account-login .login-links {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  main .account-login .login-links a {
+    font-size: 12px;
+    color: var(--text-color-input);
+    text-decoration: underline;
+  }
+
+  main .account-login .login-links a:hover {
+    color: var(--color-blue-primary);
+  }
+
+  main .account-login .login-links a.login-link-arrow {
+    color: var(--color-blue-primary);
+    font-weight: 500;
+    text-decoration: none;
+  }
+
+  main .account-login .login-links a.login-link-arrow::after {
+    content: ' \203A';
+    font-size: 16px;
+  }
+
+  main .account-login .login-links a.login-link-arrow:hover {
+    text-decoration: underline;
+  }
+}
