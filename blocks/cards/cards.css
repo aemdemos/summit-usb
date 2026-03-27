@@ -179,6 +179,8 @@
 }
 
 .cards ul.editorial > li {
+  display: flex;
+  flex-direction: column;
   border: none;
   border-radius: 0;
   background: transparent;
@@ -197,6 +199,7 @@
 .cards ul.editorial .cards-card-body {
   display: flex;
   flex-direction: column;
+  flex: 1;
   padding: var(--spacing-l) 0 0;
 }
 
@@ -218,7 +221,8 @@
 }
 
 .cards ul.editorial .cards-card-body p:last-child {
-  margin-top: var(--spacing-xl);
+  margin-top: auto;
+  padding-top: var(--spacing-xl);
 }
 
 .cards ul.editorial .cards-card-body a {
