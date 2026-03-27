@@ -11,7 +11,7 @@ footer .footer {
 }
 
 footer .footer-content {
-  max-width: 1120px;
+  max-width: var(--max-width-site);
   margin: 0 auto;
   padding: 32px 24px 64px;
 }
