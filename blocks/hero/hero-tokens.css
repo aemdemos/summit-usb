@@ -1,9 +1,7 @@
-/* hero design tokens — matches usbank.com hero card */
+/* hero design tokens */
 :root {
-  --hero-card-padding: 24px;
-  --hero-card-border: 1px solid var(--border-color);
-  --hero-card-bg: var(--background-color);
-  --hero-section-bg: var(--background-color);
-  --hero-section-padding-bottom: 32px;
-  --hero-image-aspect: 3 / 2;
+  --hero-overlay-border-radius: 12px;
+  --hero-overlay-padding: 24px;
+  --hero-overlay-max-width: 340px;
+  --hero-overlay-offset: 15%;
 }

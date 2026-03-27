@@ -578,3 +578,27 @@ main .section.gray {
   margin: 0;
   padding: 40px 0;
 }
+
+/* Hero-split: hero 70% + account-login 30% side-by-side on desktop */
+@media (width >= 900px) {
+  main .section.hero-split {
+    display: grid;
+    grid-template-columns: 7fr 3fr;
+    gap: var(--spacing-xl);
+    max-width: var(--max-width-site);
+    margin: 0 auto;
+    padding: 0 var(--spacing-xl);
+    align-items: start;
+  }
+
+  /* Override default wrapper constraints so children fill their grid cells */
+  main .section.hero-split > div {
+    max-width: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  main .section.hero-split > .default-content-wrapper {
+    grid-column: 1 / -1;
+  }
+}
