@@ -612,7 +612,7 @@ header .megamenu-overlay {
     display: flex;
     gap: 32px;
     padding: 24px 32px;
-    max-width: 1120px;
+    max-width: var(--max-width-site);
     margin: 0 auto;
   }
 
@@ -709,7 +709,7 @@ header .megamenu-overlay {
   header .megamenu-cta {
     border-top: 1px solid #cdd1e2;
     padding: 16px 32px;
-    max-width: 1120px;
+    max-width: var(--max-width-site);
     margin: 0 auto;
   }
 
@@ -743,13 +743,17 @@ header .megamenu-overlay {
   }
 }
 
-/* Wide desktop centering — nav and submenu use centered content area */
+/* Wide desktop centering — all nav rows use centered content area */
 @media (width >= 1200px) {
+  header .nav-topbar {
+    padding: 0 calc((100% - var(--max-width-site)) / 2);
+  }
+
   header nav {
-    padding: 0 calc((100% - 1120px) / 2);
+    padding: 0 calc((100% - var(--max-width-site)) / 2);
   }
 
   header nav .nav-submenu {
-    padding: 0 calc((100% - 1120px) / 2);
+    padding: 0 calc((100% - var(--max-width-site)) / 2);
   }
 }
