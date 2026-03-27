@@ -202,7 +202,7 @@ Once `migration-work/design-system-extracted.json` exists with `"status": "compl
 - User says: "validate nav structure", "fix header", "header doesn't match source" → invoke for validation/remediation.
 
 **How to invoke:**
-Read and follow the complete workflow in `.agents/skills/excat-navigation-orchestrator/SKILL.md`. Execute every phase in order — desktop first (Phases 1–3, aggregate, implement, validate), then mobile only after customer confirmation. Do not skip phases or validation gates.
+Read and follow the complete workflow in `.claude/skills/excat-navigation-orchestrator/SKILL.md`. Execute every phase in order — desktop first (Phases 1–3, aggregate, implement, validate), then mobile only after customer confirmation. Do not skip phases or validation gates.
 
 **Prerequisites:**
 - The page must already be migrated (use `excat-page-migration` first if it isn't).
@@ -212,11 +212,37 @@ Read and follow the complete workflow in `.agents/skills/excat-navigation-orches
 
 **Key rules:**
 - Desktop implementation must include full CSS styling and megamenu images — no raw bullet lists.
-- All text content, links, and labels go in `content/nav.md`, never hardcoded in `header.js`.
+- All text content, links, and labels go in `/nav.md`, never hardcoded in `header.js`.
 - Every component must reach ≥ 95% visual similarity via per-component critique before reporting to the customer.
 - Mobile is implemented only after customer confirms desktop; mobile follows the same structural + style validation rigor.
 
 **Do NOT use for:** Simple link lists without screenshot evidence, pages not yet migrated, footer or non-header layout work.
+
+### Footer Migration (use Footer Orchestrator)
+
+**When a user asks to migrate, import, replicate, or instrument a site footer, ALWAYS use the Footer Orchestrator skill.**
+
+**Trigger patterns:**
+- User says: "migrate footer", "instrument footer", "replicate footer", "set up footer from URL" → invoke directly.
+- User says: "migrate footer from https://…" or provides a footer → invoke directly.
+- User says: "validate footer structure", "fix footer", "footer doesn't match source" → invoke for validation/remediation.
+
+**How to invoke:**
+Read and follow the complete workflow in `.claude/skills/excat-footer-orchestrator/SKILL.md`. Execute every phase in order — desktop first, then mobile only after customer confirmation. Do not skip phases or validation gates.
+
+**Prerequisites:**
+- The page must already be migrated (use `excat-page-migration` first if it isn't).
+- The design system should already be extracted (see "Design System Extraction" above).
+- A local dev server must be running at `http://localhost:3000`.
+- Screenshot evidence is required — the skill will never assume footer structure.
+
+**Key rules:**
+- Desktop implementation must include full CSS styling and megamenu images — no raw bullet lists.
+- All text content, links, and labels go in `/footer.md`, never hardcoded in `footer.js`.
+- Every component must reach ≥ 95% visual similarity via per-component critique before reporting to the customer.
+- Mobile is implemented only after customer confirms desktop; mobile follows the same structural + style validation rigor.
+
+**Do NOT use for:** Simple link lists without screenshot evidence, pages not yet migrated, or header layout work.
 
 ---
 
