@@ -572,6 +572,88 @@ main .section.accent a {
   color: var(--background-color);
 }
 
+/* Goals section with gradient background */
+main .section.goals {
+  background-color: #00004e;
+  background-image: radial-gradient(63.77% 100% at 48.13% 0, rgb(0 60 200) 0, rgb(0 0 78 / 0%) 80%);
+  color: #fff;
+  margin: 0;
+  padding: 80px 0;
+}
+
+main .section.goals h1,
+main .section.goals h2,
+main .section.goals h3,
+main .section.goals h4,
+main .section.goals h5,
+main .section.goals h6 {
+  color: #fff;
+}
+
+main .section.goals p,
+main .section.goals li {
+  color: rgb(255 255 255 / 85%);
+}
+
+main .section.goals a {
+  color: #fff;
+}
+
+main .section.goals a:hover {
+  text-decoration: underline;
+}
+
+main .section.goals a.button.primary {
+  background-color: #fff;
+  color: #00004e;
+  border-color: #fff;
+}
+
+main .section.goals a.button.primary:hover {
+  background-color: rgb(255 255 255 / 90%);
+}
+
+main .section.goals a.button.secondary {
+  background-color: transparent;
+  color: #fff;
+  border-color: #fff;
+}
+
+main .section.goals a.button.secondary:hover {
+  background-color: rgb(255 255 255 / 15%);
+}
+
+main .section.goals hr {
+  border: none;
+  border-top: 1px solid rgb(255 255 255 / 30%);
+  margin: 64px 0;
+}
+
+main .section.goals > .default-content-wrapper > h2 {
+  text-transform: uppercase;
+  font-size: var(--body-font-size-m);
+  font-weight: var(--font-weight-bold);
+  letter-spacing: 0.1em;
+  margin-bottom: var(--spacing-xl);
+}
+
+main .section.goals .columns.columns-4-cols img {
+  width: 40px;
+  height: 40px;
+  filter: brightness(0) invert(1);
+  border-radius: 0;
+}
+
+main .section.goals .columns.columns-4-cols a {
+  font-size: var(--body-font-size-m);
+  font-weight: var(--font-weight-bold);
+  text-decoration: none;
+}
+
+main .section.goals .columns.columns-4-cols a:hover {
+  text-decoration: underline;
+}
+
 /* Gray background */
 main .section.gray {
   background-color: var(--overlay-background-color);
