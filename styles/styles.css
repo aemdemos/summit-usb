@@ -604,14 +604,14 @@ main .section.goals a:hover {
 }
 
 main .section.goals a.button.primary {
-  background-color: #fff;
-  color: #00004e;
-  border-color: #fff;
+  background-color: var(--color-blue-primary);
+  color: #fff;
+  border-color: var(--color-blue-primary);
 }
 
 main .section.goals a.button.primary:hover {
-  background-color: rgb(220 220 230);
-  border-color: rgb(220 220 230);
+  background-color: var(--color-blue-hover);
+  border-color: var(--color-blue-hover);
 }
 
 main .section.goals a.button.secondary {
