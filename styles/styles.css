@@ -610,7 +610,8 @@ main .section.goals a.button.primary {
 }
 
 main .section.goals a.button.primary:hover {
-  background-color: rgb(255 255 255 / 90%);
+  background-color: rgb(220 220 230);
+  border-color: rgb(220 220 230);
 }
 
 main .section.goals a.button.secondary {
@@ -619,8 +620,31 @@ main .section.goals a.button.secondary {
   border-color: #fff;
 }
 
+main .section.goals a.button:hover {
+  text-decoration: none;
+}
+
 main .section.goals a.button.secondary:hover {
-  background-color: rgb(255 255 255 / 15%);
+  background-color: var(--color-blue-primary);
+  border-color: transparent;
+}
+
+main .section.goals .columns h2 {
+  font-size: 32px;
+  font-weight: 300;
+  line-height: 1.2;
+  color: rgb(170 210 255);
+}
+
+main .section.goals .columns h2 strong {
+  color: #fff;
+  font-weight: 400;
+}
+
+@media (width >= 900px) {
+  main .section.goals .columns h2 {
+    font-size: 48px;
+  }
 }
 
 main .section.goals > .default-content-wrapper {
@@ -645,9 +669,23 @@ main .section.goals .columns.columns-4-cols img {
 }
 
 main .section.goals .columns.columns-4-cols a {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
   font-size: var(--body-font-size-m);
   font-weight: var(--font-weight-bold);
   text-decoration: none;
+}
+
+main .section.goals .columns.columns-4-cols a::after {
+  content: '';
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+  background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23ffffff' viewBox='0 0 20 20'%3E%3Cpath d='M6.36 15.47L11.83 10 6.36 4.53l1.06-1.06 6 6a.75.75 0 0 1 0 1.06l-6 6z'/%3E%3C/svg%3E");
+  background-size: contain;
+  background-repeat: no-repeat;
 }
 
 main .section.goals .columns.columns-4-cols a:hover {
