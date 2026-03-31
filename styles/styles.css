@@ -572,6 +572,126 @@ main .section.accent a {
   color: var(--background-color);
 }
 
+/* Goals section with gradient background */
+main .section.goals {
+  background-color: #00004e;
+  background-image: radial-gradient(63.77% 100% at 48.13% 0, rgb(0 60 200) 0, rgb(0 0 78 / 0%) 80%);
+  color: #fff;
+  margin: 0;
+  padding: 80px 0;
+}
+
+main .section.goals h1,
+main .section.goals h2,
+main .section.goals h3,
+main .section.goals h4,
+main .section.goals h5,
+main .section.goals h6 {
+  color: #fff;
+}
+
+main .section.goals p,
+main .section.goals li {
+  color: rgb(255 255 255 / 85%);
+}
+
+main .section.goals a {
+  color: #fff;
+}
+
+main .section.goals a:hover {
+  text-decoration: underline;
+}
+
+main .section.goals a.button.primary {
+  background-color: var(--color-blue-primary);
+  color: #fff;
+  border-color: var(--color-blue-primary);
+}
+
+main .section.goals a.button.primary:hover {
+  background-color: var(--color-blue-hover);
+  border-color: var(--color-blue-hover);
+}
+
+main .section.goals a.button.secondary {
+  background-color: transparent;
+  color: #fff;
+  border-color: #fff;
+}
+
+main .section.goals a.button:hover {
+  text-decoration: none;
+}
+
+main .section.goals a.button.secondary:hover {
+  background-color: var(--color-blue-primary);
+  border-color: transparent;
+}
+
+main .section.goals .columns h2 {
+  font-size: 32px;
+  font-weight: 300;
+  line-height: 1.2;
+  color: rgb(170 210 255);
+}
+
+main .section.goals .columns h2 strong {
+  color: #fff;
+  font-weight: 400;
+}
+
+@media (width >= 900px) {
+  main .section.goals .columns h2 {
+    font-size: 48px;
+  }
+}
+
+main .section.goals > .default-content-wrapper {
+  border-top: 1px solid rgb(255 255 255 / 30%);
+  margin-top: 64px;
+  padding-top: 64px;
+}
+
+main .section.goals > .default-content-wrapper > h2 {
+  text-transform: uppercase;
+  font-size: var(--body-font-size-m);
+  font-weight: var(--font-weight-bold);
+  letter-spacing: 0.1em;
+  margin-bottom: var(--spacing-xl);
+}
+
+main .section.goals .columns.columns-4-cols img {
+  width: 40px;
+  height: 40px;
+  filter: brightness(0) invert(1);
+  border-radius: 0;
+}
+
+main .section.goals .columns.columns-4-cols a {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: var(--body-font-size-m);
+  font-weight: var(--font-weight-bold);
+  text-decoration: none;
+}
+
+main .section.goals .columns.columns-4-cols a::after {
+  content: '';
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+  background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23ffffff' viewBox='0 0 20 20'%3E%3Cpath d='M6.36 15.47L11.83 10 6.36 4.53l1.06-1.06 6 6a.75.75 0 0 1 0 1.06l-6 6z'/%3E%3C/svg%3E");
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+main .section.goals .columns.columns-4-cols a:hover {
+  text-decoration: underline;
+}
+
 /* Gray background */
 main .section.gray {
   background-color: var(--overlay-background-color);

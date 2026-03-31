@@ -196,7 +196,7 @@ function slideTo(mobileMenu, panelId) {
   if (isBack) {
     // Going back: pop panels off the stack until we reach target
     while (mobilePanelStack.length > 0
-      && mobilePanelStack[mobilePanelStack.length - 1] !== panelId) {
+      && mobilePanelStack.at(-1) !== panelId) {
       const poppedId = mobilePanelStack.pop();
       const popped = mobileMenu.querySelector(`[data-panel-id="${poppedId}"]`);
       if (popped) popped.classList.remove('active', 'behind');
@@ -206,7 +206,7 @@ function slideTo(mobileMenu, panelId) {
     target.classList.add('active');
   } else {
     // Going forward: current panel slides left (behind), new panel slides in
-    const currentId = mobilePanelStack[mobilePanelStack.length - 1];
+    const currentId = mobilePanelStack.at(-1);
     const current = mobileMenu.querySelector(`[data-panel-id="${currentId}"]`);
     if (current) {
       current.classList.remove('active');
@@ -340,13 +340,13 @@ function buildMobileUtilitySection(toolsSection, panel) {
   utilSection.className = 'mobile-utility-section';
   const toolsUl = toolsSection.querySelector('ul');
   if (!toolsUl) return;
-  const iconMap = {
-    'How can we help you?': 'search',
-    Locations: 'location',
-    Support: 'headset',
-    'Financial education': 'book',
-    'About us': 'people',
-  };
+  const iconMap = new Map([
+    ['How can we help you?', 'search'],
+    ['Locations', 'location'],
+    ['Support', 'headset'],
+    ['Financial education', 'book'],
+    ['About us', 'people'],
+  ]);
   const items = [...toolsUl.children].filter((li) => {
     const a = li.querySelector('a');
     return a && a.textContent.trim() !== 'Log in';
@@ -357,7 +357,7 @@ function buildMobileUtilitySection(toolsSection, panel) {
     const text = a.textContent.trim();
     const item = document.createElement('div');
     item.className = 'mobile-utility-item';
-    const iconType = iconMap[text];
+    const iconType = iconMap.get(text);
     if (iconType) item.setAttribute('data-icon', iconType);
     if (text === 'How can we help you?') {
       item.classList.add('smart-assistant-item');
