@@ -585,17 +585,22 @@ header .megamenu-overlay {
     padding: 0 24px;
     background: none;
     border: none;
+    border-radius: 0;
     color: #fff;
     font-size: 14px;
     font-weight: 400;
     font-family: var(--body-font-family);
     cursor: pointer;
     white-space: nowrap;
-    transition: background-color 0.15s;
+    transition: background-color 0.15s, color 0.15s;
   }
 
   header .nav-submenu-item:hover {
-    background-color: rgb(255 255 255 / 10%);
+    background-color: #fff;
+    color: #235ae4;
+    text-decoration: underline;
+    text-underline-offset: 0.125em;
+    border-radius: 0;
   }
 
   header .nav-submenu-item.active {
