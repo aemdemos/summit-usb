@@ -142,7 +142,7 @@ function buildMegamenuPanel(submenuLi) {
   // Set grid columns to match actual group count
   const groupCount = groups.children.length;
   if (groupCount > 0) {
-    groups.style.gridTemplateColumns = `repeat(${groupCount}, 1fr)`;
+    groups.style.gridTemplateColumns = `repeat(${groupCount}, auto)`;
   }
 
   content.prepend(groups);

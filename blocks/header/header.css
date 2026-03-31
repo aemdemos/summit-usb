@@ -638,9 +638,8 @@ header .megamenu-overlay {
 
   header .megamenu-groups {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(3, auto);
     gap: 32px;
-    flex: 1;
   }
 
   header .megamenu-group-heading {
@@ -679,6 +678,7 @@ header .megamenu-overlay {
   /* Promo card */
   header .megamenu-promo {
     flex: 0 0 244px;
+    margin-left: auto;
     background: #f1f5fb;
     border-radius: 8px;
     padding: 24px;
