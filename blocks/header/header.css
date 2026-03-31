@@ -536,18 +536,32 @@ header .megamenu-overlay {
     color: #484861;
     text-decoration: none;
     white-space: nowrap;
-    border-bottom: 2px solid transparent;
+    border-bottom: none;
     box-sizing: border-box;
   }
 
+  header nav .nav-primary-item::after {
+    content: none;
+  }
+
   header nav .nav-primary-item:hover {
-    border-bottom-color: #00004e;
+    color: #235ae4;
+    text-decoration: underline;
+    text-underline-offset: 0.25em;
+    text-decoration-thickness: 2px;
   }
 
   header nav .nav-primary-item.has-submenu {
-    border-bottom-color: #235ae4;
     font-weight: 450;
     color: #00004e;
+    text-decoration: underline;
+    text-underline-offset: 0.25em;
+    text-decoration-thickness: 2px;
+    text-decoration-color: #235ae4;
+  }
+
+  header nav .nav-primary-item.has-submenu:hover {
+    color: #235ae4;
   }
 
   /* Submenu bar (blue) — absolutely positioned full-width below nav row */
