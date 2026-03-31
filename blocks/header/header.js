@@ -139,6 +139,12 @@ function buildMegamenuPanel(submenuLi) {
     groups.append(group);
   });
 
+  // Set grid columns to match actual group count
+  const groupCount = groups.children.length;
+  if (groupCount > 0) {
+    groups.style.gridTemplateColumns = `repeat(${groupCount}, 1fr)`;
+  }
+
   content.prepend(groups);
   panel.append(content);
 
