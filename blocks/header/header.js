@@ -131,7 +131,12 @@ function buildMegamenuPanel(submenuLi) {
   content.prepend(groups);
   panel.append(content);
 
-  const ctaP = submenuLi.querySelector(':scope > .panel-cta');
+  // CTA: look for a <p> with a link that comes after the <ul> (class may be stripped by EDS)
+  const directPs = [...submenuLi.querySelectorAll(':scope > p')];
+  const ctaP = directPs.find((p) => {
+    const a = p.querySelector('a');
+    return a && p !== submenuLi.firstElementChild;
+  });
   if (ctaP) {
     const ctaDiv = document.createElement('div');
     ctaDiv.className = 'megamenu-cta';
@@ -502,7 +507,12 @@ function buildTopbar(toolsSection) {
  */
 export default async function decorate(block) {
   const navMeta = getMetadata('nav');
-  const navPath = navMeta ? new URL(navMeta, window.location).pathname : '/nav';
+  let navPath = navMeta ? new URL(navMeta, window.location).pathname : '/nav';
+  // When served from /content/ folder, resolve nav relative to content path
+  const { pathname } = window.location;
+  if (!navMeta && pathname.startsWith('/content/')) {
+    navPath = '/content/nav';
+  }
   const resp = await fetch(`${navPath}.plain.html`);
   if (!resp.ok) return;
 
