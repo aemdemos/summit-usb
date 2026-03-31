@@ -606,6 +606,7 @@ header .megamenu-overlay {
   header .nav-submenu-item.active {
     background-color: #fff;
     color: #00004e;
+    border-top: 2px solid #235ae4;
   }
 
   /* Megamenu panels */
@@ -662,9 +663,13 @@ header .megamenu-overlay {
   header .megamenu-links a {
     color: #235ae4;
     font-size: 14px;
-    font-weight: 500;
+    font-weight: 400;
     text-decoration: none;
     line-height: 1.6;
+  }
+
+  header .megamenu-links li.highlight a {
+    font-weight: 500;
   }
 
   header .megamenu-links a:hover {

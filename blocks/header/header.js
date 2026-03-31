@@ -116,6 +116,7 @@ function buildMegamenuPanel(submenuLi) {
           const link = document.createElement('a');
           link.href = a.href;
           link.textContent = a.textContent;
+          if (a.querySelector('strong')) newLi.classList.add('highlight');
           newLi.append(link);
         } else {
           newLi.textContent = li.textContent;
