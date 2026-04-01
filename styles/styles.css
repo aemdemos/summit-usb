@@ -649,7 +649,7 @@ main .section.goals .columns h2 em {
 }
 
 main .section.goals > .default-content-wrapper {
-  border-top: 1px solid rgb(255 255 255 / 30%);
+  border-top: 1px solid rgb(255 255 255);
   margin-top: 64px;
   padding-top: 64px;
 }
