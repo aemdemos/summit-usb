@@ -629,6 +629,11 @@ main .section.goals a.button.secondary:hover {
   border-color: transparent;
 }
 
+main .section.goals .columns .button-wrapper {
+  display: inline-block;
+  margin-right: 16px;
+}
+
 main .section.goals .columns h2 {
   font-size: 32px;
   font-weight: 300;
