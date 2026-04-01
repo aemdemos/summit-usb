@@ -58,12 +58,19 @@ function buildMegamenuPanel(submenuLi) {
 
   const children = [...nestedUl.children];
   children.forEach((groupLi) => {
-    if (groupLi.classList.contains('promo-card')) {
+    // Promo cards have <strong> + <em> and no nested <ul>
+    // (class="promo-card" is stripped by EDS, so detect structurally)
+    const hasEm = groupLi.querySelector('em');
+    const hasSubUl = groupLi.querySelector(':scope > ul');
+    if (hasEm && !hasSubUl) {
       const promo = document.createElement('div');
       promo.className = 'megamenu-promo';
       const strong = groupLi.querySelector('strong');
-      const em = groupLi.querySelector('em');
-      const p = groupLi.querySelector('p');
+      const em = hasEm;
+      // In EDS the first <p> may contain strong+em; find the description <p> (no strong/em/a)
+      const p = [...groupLi.querySelectorAll('p')].find(
+        (el) => !el.querySelector('strong') && !el.querySelector('em') && !el.querySelector('a'),
+      );
       const a = groupLi.querySelector('a');
       if (strong) {
         const label = document.createElement('span');
@@ -116,6 +123,10 @@ function buildMegamenuPanel(submenuLi) {
           const link = document.createElement('a');
           link.href = a.href;
           link.textContent = a.textContent;
+          // EDS may output <strong><a>…</a></strong> or <a><strong>…</strong></a>
+          if (a.querySelector('strong') || a.parentElement?.tagName === 'STRONG') {
+            newLi.classList.add('highlight');
+          }
           newLi.append(link);
         } else {
           newLi.textContent = li.textContent;
@@ -128,10 +139,21 @@ function buildMegamenuPanel(submenuLi) {
     groups.append(group);
   });
 
+  // Set grid columns to match actual group count
+  const groupCount = groups.children.length;
+  if (groupCount > 0) {
+    groups.style.gridTemplateColumns = `repeat(${groupCount}, auto)`;
+  }
+
   content.prepend(groups);
   panel.append(content);
 
-  const ctaP = submenuLi.querySelector(':scope > .panel-cta');
+  // CTA: look for a <p> with a link that comes after the <ul> (class may be stripped by EDS)
+  const directPs = [...submenuLi.querySelectorAll(':scope > p')];
+  const ctaP = directPs.find((p) => {
+    const a = p.querySelector('a');
+    return a && p !== submenuLi.firstElementChild;
+  });
   if (ctaP) {
     const ctaDiv = document.createElement('div');
     ctaDiv.className = 'megamenu-cta';
@@ -271,7 +293,8 @@ function createMobileNavItem(text, href, hasChevron, onClick) {
 
 function buildMobileLevel3Content(deepUl, subLi, parentLabel, parentPanelId, deepPanel, ctx) {
   [...deepUl.children].forEach((deepLi) => {
-    if (deepLi.classList.contains('promo-card') || deepLi.classList.contains('panel-cta')) return;
+    // Skip promo cards (have <em> and no <ul>) and standalone CTA paragraphs
+    if ((deepLi.querySelector('em') && !deepLi.querySelector(':scope > ul'))) return;
     const deepStrong = deepLi.querySelector(':scope > strong, :scope > p > strong');
     const deepSubUl = deepLi.querySelector(':scope > ul');
     if (deepStrong && deepSubUl) {
@@ -300,7 +323,12 @@ function buildMobileLevel3Content(deepUl, subLi, parentLabel, parentPanelId, dee
       }
     }
   });
-  const ctaP = subLi.querySelector(':scope > .panel-cta');
+  // CTA: find a <p> with a link that comes after the <ul> (class may be stripped by EDS)
+  const directPs = [...subLi.querySelectorAll(':scope > p')];
+  const ctaP = directPs.find((p) => {
+    const ctaA = p.querySelector('a');
+    return ctaA && p !== subLi.firstElementChild;
+  });
   if (ctaP) {
     const ctaA = ctaP.querySelector('a');
     if (ctaA) {
@@ -502,7 +530,12 @@ function buildTopbar(toolsSection) {
  */
 export default async function decorate(block) {
   const navMeta = getMetadata('nav');
-  const navPath = navMeta ? new URL(navMeta, window.location).pathname : '/nav';
+  let navPath = navMeta ? new URL(navMeta, window.location).pathname : '/nav';
+  // When served from /content/ folder, resolve nav relative to content path
+  const { pathname } = window.location;
+  if (!navMeta && pathname.startsWith('/content/')) {
+    navPath = '/content/nav';
+  }
   const resp = await fetch(`${navPath}.plain.html`);
   if (!resp.ok) return;
 

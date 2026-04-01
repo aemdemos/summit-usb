@@ -629,6 +629,11 @@ main .section.goals a.button.secondary:hover {
   border-color: transparent;
 }
 
+main .section.goals .columns .button-wrapper {
+  display: inline-block;
+  margin-right: 16px;
+}
+
 main .section.goals .columns h2 {
   font-size: 32px;
   font-weight: 300;
@@ -636,9 +641,10 @@ main .section.goals .columns h2 {
   color: rgb(170 210 255);
 }
 
-main .section.goals .columns h2 strong {
+main .section.goals .columns h2 em {
   color: #fff;
   font-weight: 400;
+  font-style: normal;
 }
 
 @media (width >= 900px) {
@@ -648,7 +654,7 @@ main .section.goals .columns h2 strong {
 }
 
 main .section.goals > .default-content-wrapper {
-  border-top: 1px solid rgb(255 255 255 / 30%);
+  border-top: 1px solid rgb(255 255 255);
   margin-top: 64px;
   padding-top: 64px;
 }

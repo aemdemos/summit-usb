@@ -536,18 +536,32 @@ header .megamenu-overlay {
     color: #484861;
     text-decoration: none;
     white-space: nowrap;
-    border-bottom: 2px solid transparent;
+    border-bottom: none;
     box-sizing: border-box;
   }
 
+  header nav .nav-primary-item::after {
+    content: none;
+  }
+
   header nav .nav-primary-item:hover {
-    border-bottom-color: #00004e;
+    color: #235ae4;
+    text-decoration: underline;
+    text-underline-offset: 0.25em;
+    text-decoration-thickness: 2px;
   }
 
   header nav .nav-primary-item.has-submenu {
-    border-bottom-color: #235ae4;
     font-weight: 450;
     color: #00004e;
+    text-decoration: underline;
+    text-underline-offset: 0.25em;
+    text-decoration-thickness: 2px;
+    text-decoration-color: #235ae4;
+  }
+
+  header nav .nav-primary-item.has-submenu:hover {
+    color: #235ae4;
   }
 
   /* Submenu bar (blue) — absolutely positioned full-width below nav row */
@@ -571,22 +585,28 @@ header .megamenu-overlay {
     padding: 0 24px;
     background: none;
     border: none;
+    border-radius: 0;
     color: #fff;
     font-size: 14px;
     font-weight: 400;
     font-family: var(--body-font-family);
     cursor: pointer;
     white-space: nowrap;
-    transition: background-color 0.15s;
+    transition: background-color 0.15s, color 0.15s;
   }
 
   header .nav-submenu-item:hover {
-    background-color: rgb(255 255 255 / 10%);
+    background-color: #fff;
+    color: #235ae4;
+    text-decoration: underline;
+    text-underline-offset: 0.125em;
+    border-radius: 0;
   }
 
   header .nav-submenu-item.active {
     background-color: #fff;
     color: #00004e;
+    border-top: 2px solid #235ae4;
   }
 
   /* Megamenu panels */
@@ -598,7 +618,7 @@ header .megamenu-overlay {
     position: absolute;
     left: 0;
     right: 0;
-    top: 142px;
+    top: 102px;
     background: #fff;
     z-index: 99;
     padding: 0;
@@ -618,9 +638,8 @@ header .megamenu-overlay {
 
   header .megamenu-groups {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(3, auto);
     gap: 32px;
-    flex: 1;
   }
 
   header .megamenu-group-heading {
@@ -643,9 +662,13 @@ header .megamenu-overlay {
   header .megamenu-links a {
     color: #235ae4;
     font-size: 14px;
-    font-weight: 500;
+    font-weight: 400;
     text-decoration: none;
     line-height: 1.6;
+  }
+
+  header .megamenu-links li.highlight a {
+    font-weight: 600;
   }
 
   header .megamenu-links a:hover {
@@ -655,6 +678,7 @@ header .megamenu-overlay {
   /* Promo card */
   header .megamenu-promo {
     flex: 0 0 244px;
+    margin-left: auto;
     background: #f1f5fb;
     border-radius: 8px;
     padding: 24px;
