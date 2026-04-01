@@ -138,13 +138,7 @@
   filter: invert(21%) sepia(98%) saturate(3024%) hue-rotate(220deg) brightness(95%) contrast(93%);
 }
 
-.cards ul.product-category > li:hover .cards-card-icon picture {
-  background-color: rgb(255 255 255 / 20%);
-}
 
-.cards ul.product-category > li:hover .cards-card-icon img {
-  filter: brightness(0) invert(1);
-}
 
 @media (width >= 600px) {
   .cards ul.product-category {
